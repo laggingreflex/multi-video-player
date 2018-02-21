@@ -1,0 +1,7 @@
+{
+  "name": "multi-video-player",
+  "version": "0.0.0",
+  "description": "multi-video-player",
+  "main": "app.js",
+  "repository": "laggingreflex/multi-video-player"
+}
