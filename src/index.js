@@ -1,9 +1,9 @@
-import * as _ from './utils.js';
+const _ = require('./utils');
 
 const { $ } = _;
 $ `#input`.addEventListener('change', handleFileSelect, false);
 $ `#play`.addEventListener('click', handlePlay, false);
-$ `#pause`.addEventListener('click', handlePause, false);
+// $ `#pause`.addEventListener('click', handlePause, false);
 
 console.log('Ready');
 
@@ -81,30 +81,20 @@ async function handlePause() {
 function resizeGrid() {
   const { length } = _.arrify($ `#videos video`);
   const { style } = $ `#videos`;
-  // const width = w => style.width = w;
   const width = w => Array.from($ `#videos video`).forEach(v => v.style.width = w);
-  // const col = c => style.gridTemplateColumns = `repeat(${c}, 1fr)`;
-  // const row = r => style.gridTemplateRows = `repeat(${r}, 1fr)`;
   width('100%');
-  // col(1);
-  // row(1);
   if (length <= 1) {
-    //
+    width('100%');
   } else if (length <= 4) {
-    col(2);
-    row(2);
+    width('50%');
   } else if (length <= 6) {
-    col(2);
-    row(3);
+    width('50%');
   } else if (length <= 9) {
-    col(3);
-    row(3);
+    width('33%');
   } else if (length <= 12) {
-    col(4);
-    row(3);
+    width('25%');
   } else {
-    col(4);
-    row(Math.ceil(length / 4));
+    width('25%');
   }
   // console.log(`style:`, style);
 }
