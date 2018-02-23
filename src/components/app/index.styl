@@ -1,0 +1,29 @@
+
+.app
+  display grid
+  grid-template: \
+    "controls settings "\
+    "input    settings "\
+    "videos   settings "\
+    "videos   playlist " / auto 15em
+
+  // align-items: baseline
+  > *
+    border 2px dotted
+
+.controls
+  grid-area: controls
+  display flex
+.input
+  grid-area: input
+  display flex
+.playlist
+  grid-area: playlist
+  display flex
+.videos
+  grid-area: videos
+  display flex
+.settings
+  grid-area: settings
+  display flex
+

@@ -9,10 +9,10 @@ module.exports = () =>
       h.meta({ 'http-equiv': 'X-UA-Compatible', content: 'ie=edge' }),
     ]),
     h.body([
-      // h.div.loading({ id: 'app' }),
-      h.pre({ id: 'console' }),
-      h.button({ id: 'play', title: 'play' }, ['▶️']),
-      h.input({ id: 'input', type: 'file', multiple: true }),
-      h.div({id:'videos'})
+      h.div.loading({ id: 'app' }),
+      // h.pre({ id: 'console' }),
+      // h.button({ id: 'play', title: 'play' }, ['▶️']),
+      // h.input({ id: 'input', type: 'file', multiple: true }),
+      // h.div({id:'videos'})
     ])
   ]);

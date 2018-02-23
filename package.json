@@ -5,17 +5,22 @@
   "main": "app.js",
   "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server --watch"
+    "dev": "webpack-dev-server --watch --hot"
   },
   "repository": "laggingreflex/multi-video-player",
+  "dependencies": {
+    "hyperchain": "^0.6.2",
+    "preact": "^8.2.7",
+    "undb": "^0.6.0"
+  },
   "devDependencies": {
     "clean-webpack-plugin": "^0.1.18",
     "css-loader": "^0.28.9",
     "dotenv": "^5.0.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^2.30.1",
-    "hyperchain": "^0.6.2",
     "style-loader": "^0.20.2",
+    "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "text-loader": "^0.0.1",
     "url-loader": "^0.6.2",
