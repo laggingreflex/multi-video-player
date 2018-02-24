@@ -22,3 +22,5 @@ const stylize = exports.stylize = (element, styles) => {
     }
   }
 };
+
+exports.resizable = require('./resizable');

@@ -2,16 +2,16 @@ const h = require('hyperchain/preact')({ style: require('./index.styl'), tagClas
 const _ = require('../../utils');
 
 module.exports = class {
-  render({ store }) {
+  render({ state }) {
     return h.div([
       h.input({
         id: 'input',
         type: 'file',
         multiple: true,
-        onchange: e => store.files = [...(store.files || []), ...(e.target.files || [])],
+        onchange: e => state.files = [...(state.files || []), ...(e.target.files || [])],
       }),
       h.div({ id: 'videos' }),
-      store.files && h.div `${store.files.length} files loaded`,
+      state.files && h.div `${state.files.length} files loaded`,
     ]);
   }
 }

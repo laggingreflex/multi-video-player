@@ -1,35 +1,53 @@
-const h = require('hyperchain/preact')({ style: require('./index.styl'), tagClass: true });
+const h = require('hyperchain/preact')({ style: require('./index.styl'), tagClass: true }); const _ = require('../../utils')
 
 module.exports = class {
   componentWillMount() {
-    const { store, file, i } = this.props;
-    this.url = URL.createObjectURL(file);
+    this.url = URL.createObjectURL(this.props.file);
   }
   componentWillUnmount() {
-    const { store, file, i } = this.props;
     URL.revokeObjectURL(this.url);
   }
-  render() {
-    const { store, file, i } = this.props;
-    const vidProps = {
+  render({ state }) {
+    // return h.div.wrapper('video')
+    const video = h.video({
       muted: true,
       // controls: false,
-      controls: true,
+      controls: false,
       src: this.url,
       autoplay: true,
-      style: {
-        // width: '300px'
-      },
-      draggable: true,
-      resizeable: true,
-    };
-    'onmouseenter,onmouseleave'.split(/,/g).forEach(m => vidProps[m] = this[m].bind(this));
-    return h.video(vidProps);
+      loop: true,
+      // 'data-width': `${Math.ceil(Math.sqrt(state.playingFiles.length || 1))}p1x`,
+      // style: {
+      //   // width: '300px'
+      //   width: `calc(90%/${Math.ceil(Math.sqrt(state.playingFiles.length))})`,
+      // },
+      // draggable: true,
+      // resizeable: true,
+      onmouseenter: this.onmouseenter,
+      onmouseleave: this.onmouseleave,
+    });
+    return video
+    return h.div.wrapper({
+      // style: {
+      //   // width: '300px'
+      //   // width: `calc(95%/${Math.ceil(Math.sqrt(state.playingFiles.length))})`,
+      // },
+    }, [video]);
   }
+  componentDidMount() {
+    this.resize();
+  }
+  componentDidUpdate(){
+    this.resize();
+  }
+  resize(){
+    // this.base.style.width = `calc(99%/${Math.ceil(Math.sqrt(this.props.state.playingFiles.length))})`;
+  }
+
   async onmouseenter(e) {
-    const video = this.base;
+    const video = e.target;
     video.muted = false;
-    video.controls = true;
+    // video.controls = true;
     // this.style({
     //   position: 'absolute',
     //   top: '0px',
@@ -39,10 +57,10 @@ module.exports = class {
     // })
   }
   async onmouseleave(e) {
-    const video = this.base;
+    const video = e.target;
     video.muted = true;
     video.controls = false;
-    this.unStyle();
+    // this.unStyle();
   }
   style(styles) {
     const video = this.base;

@@ -3,12 +3,8 @@ const getStore = require('./store');
 const App = require('./components/app');
 
 const div = document.getElementById('app');
+const renderApp = props => render(h(App, props), div, div.lastChild);
 
-/* Re-usable wrapper */
-const renderApp = (props) =>
-  /* Main render function  */
-  render(h(App, props), div, div.lastChild);
-
-getStore({ onChange: (store) => renderApp({ store }) });
+getStore({ onChange: renderApp });
 
 if (module.hot) { module.hot.accept(); }
