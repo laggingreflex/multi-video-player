@@ -1,5 +1,5 @@
 const h = require('hyperchain/preact')({ style: require('./index.styl'), tagClass: true });
-const dragula = require('dragula');
+// const dragula = require('dragula');
 
 module.exports = class {
 

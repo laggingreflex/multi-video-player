@@ -1,6 +1,6 @@
 const h = require('hyperchain/preact')({ style: require('./index.styl'), tagClass: true });
 const _ = require('../../utils');
-const dragula = require('dragula');
+// const dragula = require('dragula');
 // const { Draggable } = require('@shopify/draggable');
 
 module.exports = class {
@@ -18,9 +18,9 @@ module.exports = class {
   componentDidMount() {
     // console.log(`this.base:`, this.base);
     // dragula([this.base]);
-    dragula([this.base], {
-      mirrorContainer: this.base,
-    });
+    // dragula([this.base], {
+    //   mirrorContainer: this.base,
+    // });
     // new Draggable([document.body])
   }
 
