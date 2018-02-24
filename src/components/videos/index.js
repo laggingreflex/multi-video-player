@@ -7,6 +7,8 @@ module.exports = class {
   componentDidUpdate() { this.updateVideos() }
   updateVideos() {
     const { state, store } = this.props;
+    console.log('?');
+    if (!state.files) console.log('!state.files', state.files);
     if (!state.files) return;
     // if (!state.playableFiles) {
     //   state.playableFiles = state.files.slice(0, 1);

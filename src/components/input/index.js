@@ -7,7 +7,12 @@ module.exports = class {
       id: 'input',
       type: 'file',
       multiple: true,
-      onchange: e => state.files = [...(state.files || []), ...(e.target.files || [])],
+      // onchange: e => state.files = [...(state.files || []), ...(e.target.files || [])],
+      onchange: e => {
+        // console.log(e.target.files);
+        state.files = Array.from(e.target.files);
+      },
+      //onchange: function(e) { state.files = [...(state.files || []), ...(e.target.files || [])] },
     });
     return input;
     return h.div([
