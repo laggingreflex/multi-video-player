@@ -7,72 +7,47 @@ module.exports = class {
   componentDidUpdate() { this.updateVideos() }
   updateVideos() {
     const { state, store } = this.props;
-    if (!state.files) return 'Please drop some videos';
-    const playingFiles = state.files.slice(0, store.settings.maxPlayers);
-    if (!state.playingFiles || playingFiles.length !== state.playingFiles.length || playingFiles.find((e, i) => e !== state.playingFiles[i])) {
-      state.playingFiles = playingFiles;
-    }
-    // if (!state.playingFiles
-    //   || playingFiles.length !== state.playingFiles.length
-    //   || playingFiles.find((e, i) => e !== state.playingFiles[i])
-    // ) {
-    //   console.log('changed because');
-    //   console.log(!state.playingFiles, `!state.playingFiles`);
-    //   console.log(playingFiles.length !== state.playingFiles.length, `playingFiles.length !== state.playingFiles.length`);
-    //   console.log(playingFiles.find((e, i) => e !== state.playingFiles[i]), `playingFiles.find((e, i) => e !== state.playingFiles[i])`);
-    //   state.playingFiles = playingFiles;
-    // }
-    // console.log('?');
-    // dragula([this.base], {
-    //   mirrorContainer: this.base,
-    // });
-
-    if (this.base && this.base.children && this.base.children.length) {
-      // console.log(`this.base.children:`, this.base.children);
-
-      /*
-        1        100%
-        2 3      50%
-        4 5 6    33%
-        7 8 9 10 25%
-
-      */
-      let i = 1;
-      let j = 1;
-      let k = 1;
-      for (const child of this.base.children) {
-        const width = 100 / k;
-        // console.log(i, (width).toFixed(1), { j, k });
-        child.style.width = `calc(${width}% - 1px)`;
-        // child.style.maxHeight = `${child.offsetWidth * (10/16)}px`
-        i++;
-        j++;
-        if (j > k) {
-          k++;
-          j = 1;
-        }
-      }
-    }
-    // console.log(`this:`, this);
-    // console.log(`this.base:`, this.base);
-    // console.log(`this.base.querySelector(''):`, this.base.querySelector(''));
-
-    // for(const child of this.base.querySelector('')) {
-
+    if (!state.files) return;
+    // if (!state.playableFiles) {
+    //   state.playableFiles = state.files.slice(0, 1);
     // }
   }
 
   render({ state }) {
-    if (!state.files) return 'Please drop some videos';
-    if (!state.playingFiles) return;
+    if (!state.files) return;
+    // if (!state.playableFiles) return 'Loading';
+
     // return `Playing ${state.playingFiles.length} files`
-    const videos = state.playingFiles.map((file, i) => h(require('../video'), Object.assign({}, this.props, {
+    const videos = state.files.map((file, i) => h(require('../video'), Object.assign({}, this.props, {
       file,
       i,
+      // rendered: (...args) => this.oneVideoRendered(...args),
     })));
     // return h.ol.videos(videos.map(v => h.li(v)));
-    return h.div.videos(videos);
+    return h.div.videos({
+      draggable: true,
+      class: [state.settings && state.settings.style || 'style-1'],
+    }, videos);
     // return h.ol.videos(videos.map(video => h.li(video)));
     // return h.ol.videos(state.playingFiles.map((file, i) => h.li()));
   }
+
+  oneVideoRendered() {
+    const { state, store } = this.props;
+    clearTimeout()
+    this.load();
+    if (state.playableFiles.length < state.files.length) {
+      const push = state.files.find(e => !state.playableFiles.includes(e));
+      if (!push) {
+        throw new Error('no push?')
+      } else {
+        state.playableFiles.push(push);
+      }
+    }
+  }
+
+  load(){
+
+  }
+
 }
