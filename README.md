@@ -11,6 +11,20 @@ https://multi-video-player.surge.sh/
 
 Open the player and just drop some files in it.
 
+## Features
+
+* Unlimited videos (limit is your browser/computer)
+
+* Play/pause, seek, control volume, playback rate for individual or all videos
+
+* Multiple styles - mason (efficient stacking), flat (equally spaced), funnel (decreasing video sizes)
+
+* Zoom in (fewer, larger videos), zoom out (more, smaller videos)
+
+* Multiple play modes - play-single, play-all-muted, play-all, control-all(experimental)
+
+* Intuitive arrow keys & WSAD keys [keyboard shortcuts](#keyboard-shortcuts)
+
 ## Keyboard shortcuts
 
 All keybindings work on the current video that's under the mouse pointer, unless mentioned otherwise.
@@ -44,9 +58,9 @@ All keybindings work on the current video that's under the mouse pointer, unless
 | <kbd>+</kbd> | Zoom in (fewer, larger videos)
 | <kbd>-</kbd> | Zoom Out (more, smaller videos)
 ||
-| <kbd>*</kbd> | Toggle style [mason (efficient stacking), flat (equally spaced), funnel (decreasing video sizes)]
+| <kbd>*</kbd> | Toggle style - mason (efficient stacking), flat (equally spaced), funnel (decreasing video sizes)
 ||
-| <kbd>P</kbd> | Toggle play mode [play-single, play-all-muted, play-all, control-all(experimental)]
+| <kbd>P</kbd> | Toggle play mode - play-single, play-all-muted, play-all, control-all(experimental)
 
 ## Limitations
 
