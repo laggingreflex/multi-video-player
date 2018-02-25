@@ -1,19 +1,25 @@
 
-.input
-  display block
+.wrapper
+  display flex
   position fixed
-  // left 0
-  // top 0
-  // width: calc(100vw - 2em)
-  // height: calc(100vh - 2em)
-  // max-width: 100%
-  // min-width: 100%
+  flex-direction: column
   width: 100%
   height: 100%
   // border: 1px dotted
-  background: transparent
-  // background: black
-  // opacity .1
-  // z-index 10
-  // pointer-events:none;
+  background: white
+  .p
+    display: block
+    margin: auto
+    // width: 100%
+    // height: 100%
+  &:hover
+    cursor pointer
+    .p
+      font-weight: bold
+  &.filesBeingDropped
+    background: gray
+  // background: gray
+  //   border: 4px dotted
+  // border: 4px dotted
+
 

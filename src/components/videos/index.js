@@ -11,7 +11,7 @@ module.exports = class {
       i,
     })));
     return h.div.videos({
-      draggable: true,
+      // draggable: true,
       class: [
         `style-${store.settings.style || 'mason'}`,
         `zoom-${store.settings.zoom || 1}`,
