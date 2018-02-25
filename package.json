@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack-dev-server --watch --hot",
     "build": "webpack",
-    "publish": "cd dist && surge --domain https://multi-video-player.surge.sh"
+    "publish": "npm run build && && surge -p dist -d https://multi-video-player.surge.sh"
   },
   "repository": "laggingreflex/multi-video-player",
   "dependencies": {
