@@ -14,7 +14,7 @@ module.exports = class {
       // draggable: true,
       class: [
         `style-${store.settings.style || 'mason'}`,
-        `zoom-${store.settings.zoom || 1}`,
+        `zoom-${store.settings.zoom || 2}`,
       ].filter(Boolean),
     }, videos);
   }
