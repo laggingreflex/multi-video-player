@@ -10,7 +10,6 @@
   },
   "repository": "laggingreflex/multi-video-player",
   "dependencies": {
-    "debounce": "^1.1.0",
     "hyperchain": "^0.6.2",
     "preact": "^8.2.7",
     "undb": "^0.6.0"
