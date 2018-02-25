@@ -11,10 +11,6 @@ https://multi-video-player.surge.sh/
 
 Open the player and just drop some files in it.
 
-All videos play at once, but muted. Only which you hover over plays the audio.
-
-<sup>If you want all videos to play audio, hold <kbd>Shift</kbd> and hover over all of them.</sup>
-
 ## Keyboard shortcuts
 
 All keybindings work on the current video that's under the mouse pointer, unless mentioned otherwise.
