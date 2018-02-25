@@ -4,12 +4,12 @@ window.onmousemove = e => {
   mouse.clientY = e.clientY;
   const currentVideo = document.elementFromPoint(mouse.clientX, mouse.clientY);
   if (currentVideo && currentVideo.tagName === 'VIDEO') {
-    const otherVideos = Array.from(document.querySelectorAll('video')).filter(v => v !== currentVideo);
     currentVideo.muted = false;
     currentVideo.controls = true;
-    otherVideos.forEach(v => {
-      v.muted = true;
-      v.controls = false;
+    if (!e.shiftKey)
+    Array.from(document.querySelectorAll('video')).filter(v => v !== currentVideo).forEach(others => {
+      others.muted = true;
+      others.controls = false;
     });
   }
 }
@@ -17,11 +17,15 @@ window.onkeydown = e => {
   const video = document.elementFromPoint(mouse.clientX, mouse.clientY);
   if (!(video && video.tagName === 'VIDEO')) return;
   if (['ArrowLeft', 'a'].map(s => s.toLowerCase()).includes(e.key.toLowerCase())) {
-    video.currentTime -= video.duration / (e.shiftKey ? 10 : e.ctrlKey ? 1000 : 100);
-    e.preventDefault();
+    if (!e.altKey) {
+      video.currentTime -= video.duration / (e.shiftKey ? 10 : e.ctrlKey ? 1000 : 100);
+      e.preventDefault();
+    }
   } else if (['ArrowRight', 'd'].map(s => s.toLowerCase()).includes(e.key.toLowerCase())) {
-    video.currentTime += video.duration / (e.shiftKey ? 10 : e.ctrlKey ? 1000 : 100);
-    e.preventDefault();
+    if (!e.altKey) {
+      video.currentTime += video.duration / (e.shiftKey ? 10 : e.ctrlKey ? 1000 : 100);
+      e.preventDefault();
+    }
   } else if (['ArrowUp', 'w'].map(s => s.toLowerCase()).includes(e.key.toLowerCase())) {
     if (e.ctrlKey) {
       if (video.playbackRate < 1) {
@@ -46,7 +50,27 @@ window.onkeydown = e => {
       video.volume = e.shiftKey ? 0 : Math.max(0, video.volume - .1);
       e.preventDefault();
     }
+  } else if ([' '].map(s => s.toLowerCase()).includes(e.key.toLowerCase())) {
+    if (e.ctrlKey) {
+      if (video.paused) {
+        video.play();
+        if (e.shiftKey) {
+          for (const others of video.parentElement.querySelectorAll('video')) {
+            others.play();
+          }
+        }
+      } else {
+        video.pause();
+        if (e.shiftKey) {
+          for (const others of video.parentElement.querySelectorAll('video')) {
+            others.pause();
+          }
+        }
+      }
+      e.preventDefault();
+    }
   }
+  console.log(`e.key:`, e.key);
 }
 
 window.onwheel = e => {

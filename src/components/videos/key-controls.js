@@ -7,5 +7,11 @@ window.onkeypress = e => {
   } else if (e.key === '-') {
     store.settings.zoom = Math.min(10, (store.settings.zoom || 1) + 1)
     e.preventDefault();
+  } else if (e.key === '*') {
+    store.settings.style = 'mason'
+    e.preventDefault();
+  } else if (e.key === '/') {
+    store.settings.style = 'flat'
+    e.preventDefault();
   }
 }

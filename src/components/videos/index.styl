@@ -1,22 +1,19 @@
 
 .videos
-  // border 3px dotted blue
   position relative
-  // display inline-block
-  // width 100%
-  // height 1400px
-  // for n in (1..100)
-  //   .video:nth-child(n)
-
-
-
-.videos
-  display: flex
-  flex-wrap: wrap;
-  align-content: flex-start;
-  align-items: flex-start;
-  for n in (1..10)
-    &.style-{n}
-      > *
-        width: (100/n)%
-
+  &.style-flat
+    display: flex
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: flex-start;
+    for n in (1..10)
+      &.zoom-{n}
+        > *
+          width: (100/n)%
+  &.style-mason
+    > *
+      width 100%
+    column-gap 0
+    for n in (1..10)
+      &.zoom-{n}
+        column-count n
