@@ -16,34 +16,36 @@ window.onmousemove = e => {
 window.onkeydown = e => {
   const video = document.elementFromPoint(mouse.clientX, mouse.clientY);
   if (!(video && video.tagName === 'VIDEO')) return;
-  if (e.key === 'ArrowLeft') {
+  if (['ArrowLeft', 'a'].map(s => s.toLowerCase()).includes(e.key.toLowerCase())) {
     video.currentTime -= video.duration / (e.shiftKey ? 10 : e.ctrlKey ? 1000 : 100);
     e.preventDefault();
-  } else if (e.key === 'ArrowRight') {
+  } else if (['ArrowRight', 'd'].map(s => s.toLowerCase()).includes(e.key.toLowerCase())) {
     video.currentTime += video.duration / (e.shiftKey ? 10 : e.ctrlKey ? 1000 : 100);
     e.preventDefault();
-  } else if (e.key === 'ArrowUp') {
+  } else if (['ArrowUp', 'w'].map(s => s.toLowerCase()).includes(e.key.toLowerCase())) {
     if (e.ctrlKey) {
       if (video.playbackRate < 1) {
         video.playbackRate = 1
       } else {
         video.playbackRate += 0.25;
       }
-    } else {
+      e.preventDefault();
+    } else if (e.altKey) {
       video.volume = e.shiftKey ? 1 : Math.min(1, video.volume + .1);
+      e.preventDefault();
     }
-    e.preventDefault();
-  } else if (e.key === 'ArrowDown') {
+  } else if (['ArrowDown', 's'].map(s => s.toLowerCase()).includes(e.key.toLowerCase())) {
     if (e.ctrlKey) {
       if (video.playbackRate > 1) {
         video.playbackRate = 1
       } else {
         video.playbackRate -= 0.25;
       }
-    } else {
+      e.preventDefault();
+    } else if (e.altKey) {
       video.volume = e.shiftKey ? 0 : Math.max(0, video.volume - .1);
+      e.preventDefault();
     }
-    e.preventDefault();
   }
 }
 

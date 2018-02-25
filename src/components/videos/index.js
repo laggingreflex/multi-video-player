@@ -1,5 +1,5 @@
 const h = require('hyperchain/preact')({ style: require('./index.styl'), tagClass: true });
-// const dragula = require('dragula');
+require('./key-controls')
 
 module.exports = class {
 
@@ -7,7 +7,6 @@ module.exports = class {
   componentDidUpdate() { this.updateVideos() }
   updateVideos() {
     const { state, store } = this.props;
-    console.log('?');
     if (!state.files) console.log('!state.files', state.files);
     if (!state.files) return;
     // if (!state.playableFiles) {
@@ -15,7 +14,7 @@ module.exports = class {
     // }
   }
 
-  render({ state }) {
+  render({ state, store }) {
     if (!state.files) return;
     // if (!state.playableFiles) return 'Loading';
 
@@ -28,7 +27,8 @@ module.exports = class {
     // return h.ol.videos(videos.map(v => h.li(v)));
     return h.div.videos({
       draggable: true,
-      class: [state.settings && state.settings.style || 'style-1'],
+      // class: [store.settings.style || 'style-1'],
+      class: [`style-${store.settings.zoom || 1}`],
     }, videos);
     // return h.ol.videos(videos.map(video => h.li(video)));
     // return h.ol.videos(state.playingFiles.map((file, i) => h.li()));
@@ -48,7 +48,7 @@ module.exports = class {
     }
   }
 
-  load(){
+  load() {
 
   }
 

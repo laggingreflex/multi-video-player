@@ -10,46 +10,13 @@
 
 
 
-.videos.style-1
+.videos
   display: flex
-  // width: 100vw!important
-  // max-width: 100vw!important
   flex-wrap: wrap;
-  // flex-direction: row-reverse
-
-  // align-content: stretch;
   align-content: flex-start;
-  align-items: baseline;
-  align-items: center;
-  align-items: stretch;
   align-items: flex-start;
+  for n in (1..10)
+    &.style-{n}
+      > *
+        width: (100/n)%
 
-
-  > *
-    width: 10%
-  for n in (1..(2*1))
-    > *:nth-child({n})
-      width: (100/2)%
-  for n in (1..(3*2))
-    > *:nth-child({(n+(2*1))})
-      width: (100/3)%
-  for n in (1..(4*3))
-    > *:nth-child({(n+(2*1)+(3*2))})
-      width: (100/4)%
-  for n in (1..(5*3))
-    > *:nth-child({(n+(2*1)+(3*2+(4*3)))})
-      width: (100/5)%
-  for n in (1..(6*4))
-    > *:nth-child({(n+(2*1)+(3*2+(4*3)+(5*3)))})
-      width: (100/6)%
-  for n in (1..(7*4))
-    > *:nth-child({(n+(2*1)+(3*2+(4*3)+(5*3)+(6*4)))})
-      width: (100/7)%
-  for n in (1..(8*4))
-    > *:nth-child({(n+(2*1)+(3*2+(4*3)+(5*3)+(6*4)+(7*4)))})
-      width: (100/8)%
-
-
-// .videos > *
-//   float left
-//   resize both
