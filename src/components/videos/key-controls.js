@@ -1,8 +1,8 @@
 const { store, state } = require('../../db');
 
 const playModes = [
-  'play-single',
   'play-all-muted',
+  'play-single',
   'play-all',
   // 'control-all',
 ];
