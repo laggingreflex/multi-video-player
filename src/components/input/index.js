@@ -3,12 +3,30 @@ const _ = require('../../utils');
 
 const { state } = require('../../db');
 
+let dragLeaveTimeout;
 window.ondragover = e => {
+  clearTimeout(dragLeaveTimeout);
   if ((e.dataTransfer.files.length || e.dataTransfer.items.length) && !state.filesBeingDropped) {
     state.filesBeingDropped = e.dataTransfer.files.length || e.dataTransfer.items.length;
+  } else {
+    // state.filesBeingDropped = false;
   }
   e.preventDefault()
 }
+
+window.ondragend =
+window.ondragleave =
+  e => {
+    clearTimeout(dragLeaveTimeout);
+    dragLeaveTimeout = setTimeout(() => {
+      if (state.filesBeingDropped)
+        state.filesBeingDropped = false
+    }, 100);
+    console.log('leaving?', { target: e.target, e });
+    // if (state.filesBeingDropped)
+    //   state.filesBeingDropped = false
+    // e.preventDefault()
+  }
 
 module.exports = class {
   render({ state }) {
@@ -34,8 +52,9 @@ module.exports = class {
       draggable: true,
       style: {
         zIndex: state.filesBeingDropped ? 100 : null,
+        visibility: (state.filesBeingDropped || !state.files) ? 'visible' : 'hidden',
       },
-      class: [state.filesBeingDropped && 'filesBeingDropped'],
+      class: [state.filesBeingDropped && 'filesBeingDropped'].filter(Boolean),
       ondrop: e => {
         e.preventDefault();
         state.filesBeingDropped = false;

@@ -15,7 +15,7 @@ module.exports = class {
       class: [
         `style-${store.settings.style || 'mason'}`,
         `zoom-${store.settings.zoom || 1}`,
-      ],
+      ].filter(Boolean),
     }, videos);
   }
 }

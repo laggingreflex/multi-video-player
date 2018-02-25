@@ -8,7 +8,7 @@ module.exports = class {
     const files = state.files || [];
     return h.div(files.map(f => h.div(f.name)));
     return h.ol({}, Array.from(files).map(file => h.li({
-      // class: [state.playingFiles && state.playingFiles.includes(file) && 'playing']
+      // class: [state.playingFiles && state.playingFiles.includes(file) && 'playing'].filter(Boolean)
     }, [file.name])));
   }
   componentDidUpdate() {

@@ -21,7 +21,7 @@ module.exports = class {
       },
       class: [
         state.files && state.files.length && 'files-selected',
-      ]
+      ].filter(Boolean)
     }, [
       // h.div.controls(h(require('../controls'), props)),
       h.div.input(h(require('../input'), props)),
