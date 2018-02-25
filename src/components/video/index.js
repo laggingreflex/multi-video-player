@@ -12,7 +12,7 @@ module.exports = class {
     // URL.revokeObjectURL(this.props.file.url);
     // delete this.props.file.url;
   }
-  render({ state, file }) {
+  render({ store, state, file }) {
     // return h.div.wrapper('video')
     // if (!this.props.file.url) return
     const video = h.video({
@@ -21,7 +21,7 @@ module.exports = class {
       controls: false,
       // src: this.url,
       src: this.url,
-      autoplay: true,
+      autoplay: store.settings.playMode !== 'play-single',
       loop: true,
     });
     return video;

@@ -1,3 +1,5 @@
+const { store, state } = require('../../db');
+
 const mouse = {}
 window.onmousemove = e => {
   mouse.clientX = e.clientX;
@@ -6,11 +8,20 @@ window.onmousemove = e => {
   if (currentVideo && currentVideo.tagName === 'VIDEO') {
     currentVideo.muted = false;
     currentVideo.controls = true;
-    if (!e.shiftKey)
-    Array.from(document.querySelectorAll('video')).filter(v => v !== currentVideo).forEach(others => {
-      others.muted = true;
-      others.controls = false;
-    });
+    try {
+      currentVideo.play().catch(() => {});
+    } catch (error) {}
+    if (!e.shiftKey) {
+      Array.from(document.querySelectorAll('video')).filter(v => v !== currentVideo).forEach(others => {
+        others.muted = true;
+        others.controls = false;
+        if (store.settings.playMode === 'play-single') {
+          others.pause();
+        } else if (store.settings.playMode === 'play-all' || store.settings.playMode === 'control-all') {
+          others.muted = false;
+        }
+      });
+    }
   }
 }
 window.onkeydown = e => {
@@ -18,12 +29,22 @@ window.onkeydown = e => {
   if (!(video && video.tagName === 'VIDEO')) return;
   if (['ArrowLeft', 'a'].map(s => s.toLowerCase()).includes(e.key.toLowerCase())) {
     if (!e.altKey) {
-      video.currentTime -= video.duration / (e.shiftKey ? 10 : e.ctrlKey ? 1000 : 100);
+      const v = v => v.currentTime -= v.duration / (e.shiftKey ? 10 : e.ctrlKey ? 1000 : 100);
+      if (store.settings.playMode === 'control-all') {
+        Array.from(document.querySelectorAll('video')).map(v);
+      } else {
+        v(video)
+      }
       e.preventDefault();
     }
   } else if (['ArrowRight', 'd'].map(s => s.toLowerCase()).includes(e.key.toLowerCase())) {
     if (!e.altKey) {
-      video.currentTime += video.duration / (e.shiftKey ? 10 : e.ctrlKey ? 1000 : 100);
+      const v = v => v.currentTime += v.duration / (e.shiftKey ? 10 : e.ctrlKey ? 1000 : 100);
+      if (store.settings.playMode === 'control-all') {
+        Array.from(document.querySelectorAll('video')).map(v);
+      } else {
+        v(video)
+      }
       e.preventDefault();
     }
   } else if (['ArrowUp', 'w'].map(s => s.toLowerCase()).includes(e.key.toLowerCase())) {
@@ -70,7 +91,7 @@ window.onkeydown = e => {
       e.preventDefault();
     }
   }
-  console.log(`e.key:`, e.key);
+  // console.log(`e.key:`, e.key);
 }
 
 window.onwheel = e => {

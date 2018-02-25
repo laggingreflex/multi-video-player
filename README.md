@@ -50,10 +50,14 @@ All keybindings work on the current video that's under the mouse pointer, unless
 | <kbd>Spacebar</kbd> | Nothing (default behavior: scroll down)
 | <kbd>Ctrl</kbd> + <kbd>Spacebar</kbd> | Play/pause video (under the cursor)
 | <kbd>Shift</kbd> + <kbd>Ctrl</kbd> + <kbd>Spacebar</kbd> | Play/pause all videos
+||
+| <kbd>P</kbd> | Toggle play mode [play-single, play-all-muted, play-all, control-all(experimental)]
 
 
 ## Limitations
 
 * Tested only on latest chrome, some issues in FF/Edge, untested in other browsers (safari, all mobile)
 
-* Can only play videos supported by the web browser (mp4/ogg, <strike>flv/avi</strike>)
+* Can only play videos supported by the web browser (mp4/ogg, <strike>flv/avi</strike>). This also makes it depend on the browser to use CPU/GPU for rendering videos. Firefox (at the time of testing) was extremely slow with 10+ videos.
+
+* Depends on Web browser and its File API, can't read/write to disk directly (for example creating playlists, reading entire directories)
