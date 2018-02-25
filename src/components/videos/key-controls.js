@@ -5,7 +5,17 @@ const playModes = [
   'play-all-muted',
   'play-all',
   // 'control-all',
-]
+];
+
+const styles = ['mason', 'flat', 'funnel'];
+
+const oneOf = list => existing => {
+  const index = list.indexOf(existing);
+  if (index == -1) return list[0];
+  const next = index + 1;
+  if (next >= list.length) return list[0];
+  return list[next];
+};
 
 window.onkeypress = e => {
   if (matchKey('+')(e.key)) {
@@ -15,28 +25,12 @@ window.onkeypress = e => {
     store.settings.zoom = Math.min(10, (store.settings.zoom || 1) + 1)
     e.preventDefault();
   } else if (matchKey('*')(e.key)) {
-    store.settings.style = 'mason'
-    e.preventDefault();
-  } else if (matchKey('/')(e.key)) {
-    store.settings.style = 'flat'
+    store.settings.style = oneOf(styles)(store.settings.style);
+    console.log(`store.settings.style:`, store.settings.style);
     e.preventDefault();
   } else if (matchKey('p')(e.key)) {
-    let newIndex;
-    if (store.settings.playMode) {
-      const index = playModes.indexOf(store.settings.playMode);
-      if (index === -1) {
-        newIndex = 0;
-      } else {
-        newIndex = index + 1;
-        if (newIndex >= playModes.length) {
-          newIndex = 0;
-        }
-      }
-    } else {
-      newIndex = 0;
-    }
-    store.settings.playMode = playModes[newIndex];
-    // console.log(`store.settings.playMode:`, store.settings.playMode);
+    store.settings.playMode = oneOf(playModes)(store.settings.playMode);
+    console.log(`store.settings.playMode:`, store.settings.playMode);
     if (store.settings.playMode === 'play-single') {
       for (const video of document.querySelectorAll('video')) {
         try {
