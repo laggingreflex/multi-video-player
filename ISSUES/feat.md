@@ -1,13 +1,24 @@
 
 * View
 
+  ☐ Display info/controls on video.
+
   ☐ When adjusting zoom, scroll back to current video
+
+  ☐ 'play-visible' - A new mode to play only videos currently in the view
 
   ☐ When leaving the app in background, let the user choose to have the video(s) keep playing or pause. Currently it's to keep playing, the user can pause himself (use <kbd>Spacebar</kbd>) before leaving.
 
   ☐ Settings page/popup (to configure zoom, style, etc settings)
 
   ☐ Ability to search google for the specified file (maybe to look up lyrics for music files, or other details like original youtube page, etc.)
+
+* Controls
+
+  ☐ "Next" to switch to next video by either scrolling to it, or just playing it.
+
+  ☐ Global hotkeys - play/pause
+
 
 * Files
 
