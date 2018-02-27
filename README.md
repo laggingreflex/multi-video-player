@@ -56,7 +56,9 @@ All keybindings work on the current video that's under the mouse pointer, unless
 | <kbd>Shift</kbd> + <kbd>Ctrl</kbd> + <kbd>Spacebar</kbd> | Play/pause all videos
 ||
 | <kbd>+</kbd> | Zoom in (fewer, larger videos)
-| <kbd>-</kbd> | Zoom Out (more, smaller videos)
+| <kbd>Shift</kbd> <kbd>+</kbd> | Max zoom level (single full-width video)
+| <kbd>-</kbd> | Zoom out (more, smaller videos)
+| <kbd>Shift</kbd> <kbd>-</kbd> | Reset to previous zoom level (from max zoom), or lowest
 ||
 | <kbd>*</kbd> | Toggle style - mason (efficient stacking), flat (equally spaced), funnel (decreasing video sizes)
 ||
