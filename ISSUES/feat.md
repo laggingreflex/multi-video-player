@@ -21,7 +21,7 @@
 
   ☐ Option to plat next after a video finishes. Currently it just loops
 
-  ☐ Global hotkeys - play/pause/next
+  🗵 Global hotkeys - play/pause/next. Turns out it's not possible. Neither media keys (play/pause), nor global hotkeys.
 
 
 * Files
