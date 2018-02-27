@@ -3,6 +3,8 @@
 
   ☐ When adjusting zoom, scroll back to current video
 
+  ☐ When leaving the app in background, let the user choose to have the video(s) keep playing or pause. Currently it's to keep playing, the user can pause himself (use <kbd>Spacebar</kbd>) before leaving.
+
   ☐ Settings page/popup (to configure zoom, style, etc settings)
 
   ☐ Ability to search google for the specified file (maybe to look up lyrics for music files, or other details like original youtube page, etc.)
