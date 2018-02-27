@@ -15,6 +15,8 @@
 
 * Controls
 
+  ☐ stop/play from beginning
+
   ☐ "Next" to switch to next video by either scrolling to it, or just playing it anyhow. Useful for controlling music via global hotkeys - like a regular music player.
 
   ☐ Option to plat next after a video finishes. Currently it just loops
