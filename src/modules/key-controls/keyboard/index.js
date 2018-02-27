@@ -74,6 +74,10 @@ module.exports = ({ store, getCurrentVideo }) => {
 
   window.onkeypress = e => {
     const currentVideo = getCurrentVideo();
+    const scrollIntoView = () => setTimeout(() => {
+      if (!currentVideo) return;
+      currentVideo.scrollIntoView(true);
+    }, 100);
     if (matchKey('+')(e.key)) {
       if (e.shiftKey) {
         store.settings.lastZoom = store.settings.zoom;
@@ -82,10 +86,7 @@ module.exports = ({ store, getCurrentVideo }) => {
         store.settings.zoom = store.settings.lastZoom = Math.max(1, (store.settings.zoom || 1) - 1);
       }
       e.preventDefault();
-      setTimeout(() => {
-        if (!currentVideo) return;
-        currentVideo.scrollIntoView(true);
-      }, 100);
+      scrollIntoView();
     } else if (matchKey('-')(e.key)) {
       if (e.shiftKey) {
         if (store.settings.zoom == store.settings.lastZoom) {
@@ -97,15 +98,13 @@ module.exports = ({ store, getCurrentVideo }) => {
         store.settings.zoom = store.settings.lastZoom = Math.min(10, (store.settings.zoom || 1) + 1)
       }
       e.preventDefault();
-      setTimeout(() => {
-        if (!currentVideo) return;
-        currentVideo.scrollIntoView(true);
-      }, 100);
+      scrollIntoView();
     } else if (matchKey('*')(e.key)) {
       store.settings.styleToggle();
       // store.settings.style = oneOf(styles)(store.settings.style);
       console.log(`store.settings.style:`, store.settings.style);
       e.preventDefault();
+      scrollIntoView();
     } else if (matchKey('p')(e.key)) {
       store.settings.playModeToggle();
       // store.settings.playMode = oneOf(playModes)(store.settings.playMode);
