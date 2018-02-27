@@ -3,6 +3,10 @@
 
   ☐ When adjusting zoom, scroll back to current video
 
+  ☐ Settings page/popup (to configure zoom, style, etc settings)
+
+  ☐ Ability to search google for the specified file (maybe to look up lyrics for music files, or other details like original youtube page, etc.)
+
 * Files
 
   ☐ Ability to add more files, load new files at the top
