@@ -11,6 +11,7 @@
   "repository": "laggingreflex/multi-video-player",
   "dependencies": {
     "hyperchain": "^0.6.2",
+    "merge-options": "^1.0.0",
     "preact": "^8.2.7",
     "undb": "^0.6.1"
   },

@@ -1,66 +1,66 @@
-module.exports = ({ store, mouse }) => {
+const { matchKey } = require('./utils');
+
+module.exports = ({ store, getVideo }) => {
 
   window.onkeydown = e => {
-    if (!mouse) return;
-    const video = document.elementFromPoint(mouse.clientX, mouse.clientY);
-    if (!(video && video.tagName === 'VIDEO')) return;
-    if (['ArrowLeft', 'a'].map(s => s.toLowerCase()).includes(e.key.toLowerCase())) {
+    const { currentVideo } = getVideo();
+    if (matchKey('ArrowLeft', 'a')(e.key)) {
       if (!e.altKey) {
         const v = v => v.currentTime -= v.duration / (e.shiftKey ? 10 : e.ctrlKey ? 1000 : 100);
         if (store.settings.playMode === 'control-all') {
           Array.from(document.querySelectorAll('video')).map(v);
         } else {
-          v(video)
+          v(currentVideo)
         }
         e.preventDefault();
       }
-    } else if (['ArrowRight', 'd'].map(s => s.toLowerCase()).includes(e.key.toLowerCase())) {
+    } else if (matchKey('ArrowRight', 'd')(e.key)) {
       if (!e.altKey) {
         const v = v => v.currentTime += v.duration / (e.shiftKey ? 10 : e.ctrlKey ? 1000 : 100);
         if (store.settings.playMode === 'control-all') {
           Array.from(document.querySelectorAll('video')).map(v);
         } else {
-          v(video)
+          v(currentVideo)
         }
         e.preventDefault();
       }
-    } else if (['ArrowUp', 'w'].map(s => s.toLowerCase()).includes(e.key.toLowerCase())) {
+    } else if (matchKey('ArrowUp', 'w')(e.key)) {
       if (e.ctrlKey) {
-        if (video.playbackRate < 1) {
-          video.playbackRate = 1
+        if (currentVideo.playbackRate < 1) {
+          currentVideo.playbackRate = 1
         } else {
-          video.playbackRate += 0.25;
+          currentVideo.playbackRate += 0.25;
         }
         e.preventDefault();
       } else if (e.altKey) {
-        video.volume = e.shiftKey ? 1 : Math.min(1, video.volume + .1);
+        currentVideo.volume = e.shiftKey ? 1 : Math.min(1, currentVideo.volume + .1);
         e.preventDefault();
       }
-    } else if (['ArrowDown', 's'].map(s => s.toLowerCase()).includes(e.key.toLowerCase())) {
+    } else if (matchKey('ArrowDown', 's')(e.key)) {
       if (e.ctrlKey) {
-        if (video.playbackRate > 1) {
-          video.playbackRate = 1
+        if (currentVideo.playbackRate > 1) {
+          currentVideo.playbackRate = 1
         } else {
-          video.playbackRate -= 0.25;
+          currentVideo.playbackRate -= 0.25;
         }
         e.preventDefault();
       } else if (e.altKey) {
-        video.volume = e.shiftKey ? 0 : Math.max(0, video.volume - .1);
+        currentVideo.volume = e.shiftKey ? 0 : Math.max(0, currentVideo.volume - .1);
         e.preventDefault();
       }
-    } else if ([' '].map(s => s.toLowerCase()).includes(e.key.toLowerCase())) {
+    } else if (matchKey(' ')(e.key)) {
       if (e.ctrlKey) {
-        if (video.paused) {
-          video.play();
+        if (currentVideo.paused) {
+          currentVideo.play();
           if (e.shiftKey) {
-            for (const others of video.parentElement.querySelectorAll('video')) {
+            for (const others of currentVideo.parentElement.querySelectorAll('video')) {
               others.play();
             }
           }
         } else {
-          video.pause();
+          currentVideo.pause();
           if (e.shiftKey) {
-            for (const others of video.parentElement.querySelectorAll('video')) {
+            for (const others of currentVideo.parentElement.querySelectorAll('video')) {
               others.pause();
             }
           }
@@ -114,8 +114,3 @@ module.exports = ({ store, mouse }) => {
 
 
 };
-
-function matchKey(...keys) {
-  keys = keys.map(_ => _.toLowerCase());
-  return key => keys.includes(key.toLowerCase());
-}

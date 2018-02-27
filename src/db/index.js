@@ -1,4 +1,5 @@
 const undb = require('undb');
+const merge = require('merge-options');
 // const store = require('./store');
 // const state = require('./state');
 const { toggleList } = require('./utils');
@@ -39,14 +40,15 @@ const db = undb({
   // debounce: 1,
   initial,
   read: (opts, read) => {
-    const data = read(opts);
-    Object.assign(data, methods);
+    let data = read(opts);
+    data = merge(data, methods);
     return data;
   },
   write: (db, opts, write) => {
-    write(Object.assign({}, db || {}, {
+    const data = Object.assign({}, db || {}, {
       state: {},
-    }), opts);
+    });
+    write(data, opts);
     return db;
   },
   onChange: db => {

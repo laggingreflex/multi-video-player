@@ -1,9 +1,9 @@
-const initMouse = require('./mouse');
-const initWheel = require('./wheel');
-const initKeyboard = require('./keyboard');
+const mouse = require('./mouse');
+const wheel = require('./wheel');
+const keyboard = require('./keyboard');
 
 module.exports = ({ store, state }) => {
-  const { mouse } = initMouse({ store });
-  initWheel({ mouse });
-  initKeyboard({ store, mouse });
+  const { getMouse, getVideo } = mouse({ store });
+  wheel({ getVideo });
+  keyboard({ store, getVideo });
 };
