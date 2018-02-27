@@ -15,9 +15,9 @@
 
 * Controls
 
-  ☐ "Next" to switch to next video by either scrolling to it, or just playing it.
+  ☐ "Next" to switch to next video by either scrolling to it, or just playing it anyhow. Useful for controlling music via global hotkeys - like a regular music player.
 
-  ☐ Global hotkeys - play/pause
+  ☐ Global hotkeys - play/pause/next
 
 
 * Files
