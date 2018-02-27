@@ -1,16 +1,16 @@
 require('dotenv').load();
-const Path = require('path');
 const webpack = require('webpack');
 const clean = require('clean-webpack-plugin');
 const extract = require('extract-text-webpack-plugin');
 const html = require('html-webpack-plugin');
 const analyze = require('webpack-bundle-analyzer/lib/BundleAnalyzerPlugin');
+const { join } = require('path');
 
 const isDev = /webpack-dev/.test(process.env.npm_lifecycle_script || process.argv.join());
 const isProd = !isDev;
 
-const srcPath = Path.join(__dirname, 'src');
-const buildPath = Path.join(__dirname, 'dist');
+const srcPath = join(__dirname, 'src');
+const buildPath = join(__dirname, 'build');
 
 module.exports = () => ({
   context: srcPath,
