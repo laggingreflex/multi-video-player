@@ -11,6 +11,8 @@
 
   ☐ Ability to re-arrange files
 
+  ☐ Ability to star/favourite files to be moved to the top. It should remember those files and always place them before unrated files. Any new file being starred should then have a "priority" one higher than the highest.
+
 * Core
 
   ☐ Make it a PWA that works offline, possibly be added to the desktop and opens without browser interface
