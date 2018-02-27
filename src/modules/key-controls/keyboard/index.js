@@ -7,21 +7,30 @@ module.exports = ({ store, getCurrentVideo }) => {
     if (!currentVideo) return;
     if (matchKey('ArrowLeft', 'a')(e.key)) {
       if (!e.altKey) {
-        const v = v => v.currentTime -= v.duration / (e.shiftKey ? 10 : e.ctrlKey ? 1000 : 100);
-        if (store.settings.playMode === 'control-all') {
-          Array.from(document.querySelectorAll('video')).map(v);
+        if (e.shiftKey && e.ctrlKey) {
+          currentVideo.currentTime = 0;
         } else {
-          v(currentVideo)
+          const v = v => v.currentTime -= v.duration / (e.shiftKey ? 10 : e.ctrlKey ? 1000 : 100);
+          if (store.settings.playMode === 'control-all') {
+            Array.from(document.querySelectorAll('video')).map(v);
+          } else {
+            v(currentVideo)
+          }
         }
         e.preventDefault();
       }
     } else if (matchKey('ArrowRight', 'd')(e.key)) {
       if (!e.altKey) {
-        const v = v => v.currentTime += v.duration / (e.shiftKey ? 10 : e.ctrlKey ? 1000 : 100);
-        if (store.settings.playMode === 'control-all') {
-          Array.from(document.querySelectorAll('video')).map(v);
+        if (e.shiftKey && e.ctrlKey) {
+          currentVideo.currentTime = 0;
+          currentVideo.pause();
         } else {
-          v(currentVideo)
+          const v = v => v.currentTime += v.duration / (e.shiftKey ? 10 : e.ctrlKey ? 1000 : 100);
+          if (store.settings.playMode === 'control-all') {
+            Array.from(document.querySelectorAll('video')).map(v);
+          } else {
+            v(currentVideo)
+          }
         }
         e.preventDefault();
       }
@@ -78,7 +87,10 @@ module.exports = ({ store, getCurrentVideo }) => {
       if (!currentVideo) return;
       currentVideo.scrollIntoView(true);
     }, 100);
-    if (matchKey('+')(e.key)) {
+    if (matchKey('.')(e.key)) {
+      // currentVideo.pause();
+      // currentVideo.currentTime = 0;
+    } else if (matchKey('+')(e.key)) {
       if (e.shiftKey) {
         store.settings.lastZoom = store.settings.zoom;
         store.settings.zoom = 1;
