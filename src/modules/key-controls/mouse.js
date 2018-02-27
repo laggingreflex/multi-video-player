@@ -12,12 +12,14 @@ module.exports = ({ store }) => {
       if (video.tagName !== 'VIDEO') throw new Error('Not a video');
       if (!video.pause) throw new Error('Not a video');
     } catch (error) {
+      video = null;
       // console.log(`Couldn't get video under the pointer`, error.message);
     }
     if (!video) return;
     currentVideo = video;
     currentVideo.muted = false;
     currentVideo.controls = true;
+    currentVideo.classList.add('current');
     try {
       currentVideo.play().catch(() => {});
     } catch (error) {}
@@ -30,6 +32,7 @@ module.exports = ({ store }) => {
         } else if (store.settings.playMode === 'play-all' || store.settings.playMode === 'control-all') {
           others.muted = false;
         }
+        others.classList.remove('current');
       });
     }
   });
