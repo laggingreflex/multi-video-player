@@ -21,7 +21,11 @@
 
   ☐ Option to plat next after a video finishes. Currently it just loops
 
-  🗵 Global hotkeys - play/pause/next. Turns out it's not possible. Neither media keys (play/pause), nor global hotkeys.
+  ☐ Global hotkeys - play/pause/next.
+
+    * 🗵 Turns out it's not possible, at least not in browser. Neither media keys (play/pause), nor global hotkeys.
+
+    * ☐ It might be possible in Electron: https://github.com/electron/electron/blob/master/docs/api/global-shortcut.md
 
 
 * Files
