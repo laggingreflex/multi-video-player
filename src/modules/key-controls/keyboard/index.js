@@ -4,6 +4,7 @@ module.exports = ({ store, getVideo }) => {
 
   window.onkeydown = e => {
     const { currentVideo } = getVideo();
+    if (!currentVideo) return;
     if (matchKey('ArrowLeft', 'a')(e.key)) {
       if (!e.altKey) {
         const v = v => v.currentTime -= v.duration / (e.shiftKey ? 10 : e.ctrlKey ? 1000 : 100);
