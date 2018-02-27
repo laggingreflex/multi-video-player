@@ -23,4 +23,4 @@
 
 * Code
 
-  ☐ Refactor [`video/key-controls.js`](../src/components/video/key-controls.js) and [`videos/key-controls.js`](../src/components/videos/key-controls.js)
+  🗹 Refactor [`video/key-controls.js`](../src/components/video/key-controls.js) and [`videos/key-controls.js`](../src/components/videos/key-controls.js)

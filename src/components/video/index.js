@@ -1,6 +1,5 @@
 const h = require('hyperchain/preact')({ style: require('./index.styl'), tagClass: true });
 const _ = require('../../utils')
-require('./key-controls')
 
 module.exports = class {
   componentWillMount() {

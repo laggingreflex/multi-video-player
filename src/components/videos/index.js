@@ -1,5 +1,4 @@
 const h = require('hyperchain/preact')({ style: require('./index.styl'), tagClass: true });
-require('./key-controls');
 
 module.exports = class {
 

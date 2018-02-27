@@ -12,7 +12,7 @@
   "dependencies": {
     "hyperchain": "^0.6.2",
     "preact": "^8.2.7",
-    "undb": "^0.6.0"
+    "undb": "^0.6.1"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^0.1.18",
