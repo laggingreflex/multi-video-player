@@ -1,9 +1,9 @@
 const { matchKey } = require('./utils');
 
-module.exports = ({ store, getVideo }) => {
+module.exports = ({ store, getCurrentVideo }) => {
 
   window.onkeydown = e => {
-    const { currentVideo } = getVideo();
+    const currentVideo = getCurrentVideo();
     if (!currentVideo) return;
     if (matchKey('ArrowLeft', 'a')(e.key)) {
       if (!e.altKey) {
@@ -73,12 +73,34 @@ module.exports = ({ store, getVideo }) => {
   }
 
   window.onkeypress = e => {
+    const currentVideo = getCurrentVideo();
     if (matchKey('+')(e.key)) {
-      store.settings.zoom = Math.max(1, (store.settings.zoom || 1) - 1)
+      if (e.shiftKey) {
+        store.settings.lastZoom = store.settings.zoom;
+        store.settings.zoom = 1;
+      } else {
+        store.settings.zoom = store.settings.lastZoom = Math.max(1, (store.settings.zoom || 1) - 1);
+      }
       e.preventDefault();
+      setTimeout(() => {
+        if (!currentVideo) return;
+        currentVideo.scrollIntoView(true);
+      }, 100);
     } else if (matchKey('-')(e.key)) {
-      store.settings.zoom = Math.min(10, (store.settings.zoom || 1) + 1)
+      if (e.shiftKey) {
+        if (store.settings.zoom == store.settings.lastZoom) {
+          store.settings.zoom = 10
+        } else {
+          store.settings.zoom = store.settings.lastZoom || 10
+        }
+      } else {
+        store.settings.zoom = store.settings.lastZoom = Math.min(10, (store.settings.zoom || 1) + 1)
+      }
       e.preventDefault();
+      setTimeout(() => {
+        if (!currentVideo) return;
+        currentVideo.scrollIntoView(true);
+      }, 100);
     } else if (matchKey('*')(e.key)) {
       store.settings.styleToggle();
       // store.settings.style = oneOf(styles)(store.settings.style);

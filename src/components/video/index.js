@@ -47,7 +47,9 @@ module.exports = class {
     // }
     // this.url = URL.createObjectURL(this.props.file);
   }
-  componentDidUpdate() {}
+  componentDidUpdate() {
+    // console.log('updated?');
+  }
 }
 
 function style(e, styles) {

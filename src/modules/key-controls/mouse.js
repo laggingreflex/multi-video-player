@@ -1,19 +1,21 @@
 module.exports = ({ store }) => {
   const mouse = {};
   let currentVideo;
-  let lastVideo;
 
   window.addEventListener('mousemove', e => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
+    let video;
     try {
-      currentVideo = mouse.currentVideo = document.elementFromPoint(mouse.x, mouse.y);
+      video = document.elementFromPoint(mouse.x, mouse.y);
+      if (!video) throw new Error('No video');
+      if (video.tagName !== 'VIDEO') throw new Error('Not a video');
+      if (!video.pause) throw new Error('Not a video');
     } catch (error) {
-      lastVideo = currentVideo;
-      currentVideo = null;
-      console.log(`Couldn't get video under the pointer`, error.message);
+      // console.log(`Couldn't get video under the pointer`, error.message);
     }
-    if (!(currentVideo && currentVideo.tagName === 'VIDEO')) return;
+    if (!video) return;
+    currentVideo = video;
     currentVideo.muted = false;
     currentVideo.controls = true;
     try {
@@ -34,6 +36,6 @@ module.exports = ({ store }) => {
 
   return {
     getMouse: () => mouse,
-    getVideo: () => ({ currentVideo, lastVideo }),
+    getCurrentVideo: () => currentVideo,
   };
 }
