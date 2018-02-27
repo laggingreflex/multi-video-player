@@ -10,9 +10,5 @@ module.exports = () =>
     ]),
     h.body([
       h.div.loading({ id: 'app' }),
-      // h.pre({ id: 'console' }),
-      // h.button({ id: 'play', title: 'play' }, ['▶️']),
-      // h.input({ id: 'input', type: 'file', multiple: true }),
-      // h.div({id:'videos'})
     ])
   ]);
