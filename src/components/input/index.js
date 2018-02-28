@@ -22,7 +22,7 @@ window.ondragleave =
       if (state.filesBeingDropped)
         state.filesBeingDropped = false
     }, 100);
-    console.log('leaving?', { target: e.target, e });
+    // console.log('leaving?', { target: e.target, e });
     // if (state.filesBeingDropped)
     //   state.filesBeingDropped = false
     // e.preventDefault()
