@@ -46,12 +46,15 @@ All keybindings work on the current video that's under the mouse pointer, unless
 | <kbd>➡</kbd>/<kbd>D</kbd> | Skip forward 1% (of total duration)
 | <kbd>Shift</kbd> + <kbd>➡</kbd>/<kbd>D</kbd> | Skip forward 10%
 | <kbd>Ctrl</kbd> + <kbd>➡</kbd>/<kbd>D</kbd> | Skip forward 0.1%
+| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>➡</kbd>/<kbd>D</kbd> | Stop (goto beginning and pause)
 ||
 | <kbd>⬅</kbd>/<kbd>A</kbd> | Go back 1% (of total duration)
 | <kbd>Shift</kbd> + <kbd>⬅</kbd>/<kbd>A</kbd> | Go back 10%
 | <kbd>Ctrl</kbd> + <kbd>⬅</kbd>/<kbd>A</kbd> | Go back 0.1%
+| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>⬅</kbd>/<kbd>D</kbd> | Restart (goto beginning and resume)
 ||
 | <kbd>Spacebar</kbd> | Nothing (default behavior: scroll down)
+| <kbd>Spacebar</kbd> | (when `zoom=1`) Play/pause current (full-width) video
 | <kbd>Ctrl</kbd> + <kbd>Spacebar</kbd> | Play/pause video (under the cursor)
 | <kbd>Shift</kbd> + <kbd>Ctrl</kbd> + <kbd>Spacebar</kbd> | Play/pause all videos
 ||
@@ -63,6 +66,9 @@ All keybindings work on the current video that's under the mouse pointer, unless
 | <kbd>*</kbd> | Toggle style - mason (efficient stacking), flat (equally spaced), funnel (decreasing video sizes)
 ||
 | <kbd>P</kbd> | Toggle play mode - play-single, play-all-muted, play-all, control-all(experimental)
+||
+| <kbd>Tab</kbd> | (when `zoom=1`) Focus next video
+| <kbd>Shift</kbd> + <kbd>Tab</kbd> | (when `zoom=1`) Focus previous video
 
 ## Limitations
 
