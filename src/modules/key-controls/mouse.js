@@ -1,4 +1,4 @@
-module.exports = ({ store }) => {
+module.exports = ({ store, state, sharedData }) => {
   const mouse = {};
   let currentVideo;
 
@@ -16,7 +16,7 @@ module.exports = ({ store }) => {
       // console.log(`Couldn't get video under the pointer`, error.message);
     }
     if (!video) return;
-    currentVideo = video;
+    currentVideo = sharedData.currentVideo = video;
     currentVideo.muted = false;
     currentVideo.controls = true;
     currentVideo.classList.add('current');

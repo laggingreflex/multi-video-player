@@ -3,8 +3,6 @@
 
   ☐ Display info/controls on video.
 
-  ☐ When adjusting zoom, scroll back to current video
-
   ☐ 'play-visible' - A new mode to play only videos currently in the view
 
   ☐ When leaving the app in background, let the user choose to have the video(s) keep playing or pause. Currently it's to keep playing, the user can pause himself (use <kbd>Spacebar</kbd>) before leaving.
@@ -13,13 +11,11 @@
 
   ☐ Ability to search google for the specified file (maybe to look up lyrics for music files, or other details like original youtube page, etc.)
 
+  🗹 When adjusting zoom, scroll back to current video
+
 * Controls
 
-  ☐ stop/play from beginning
-
-  ☐ "Next" to switch to next video by either scrolling to it, or just playing it anyhow. Useful for controlling music via global hotkeys - like a regular music player.
-
-  ☐ Option to plat next after a video finishes. Currently it just loops
+  ☐ Option to play next after a video finishes. Currently it just loops
 
   ☐ Global hotkeys - play/pause/next.
 
@@ -27,6 +23,11 @@
 
     * ☐ It might be possible in Electron: https://github.com/electron/electron/blob/master/docs/api/global-shortcut.md
 
+  🗹 spacebar play/pause when zoom = 1
+
+  🗹 stop/play from beginning. <kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>Left</kbd>/<kbd>Right</kbd>
+
+  🗹 "Next" to switch to next video. <kbd>Tab</kbd> when zoom=1
 
 * Files
 

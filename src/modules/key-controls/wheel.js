@@ -1,6 +1,6 @@
-module.exports = ({ getCurrentVideo }) => {
+module.exports = ({ store, state, sharedData }) => {
   window.onwheel = e => {
-    const currentVideo  = getCurrentVideo();
+    const { currentVideo } = sharedData;
     if (!currentVideo) return;
     if (e.deltaX) {
       currentVideo.currentTime -= currentVideo.duration / 100 * (e.deltaX > 0 ? 1 : -1);

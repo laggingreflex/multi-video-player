@@ -1,9 +1,9 @@
 const { matchKey } = require('./utils');
 
-module.exports = ({ store, getCurrentVideo }) => {
+module.exports = ({ store, state, sharedData }) => {
 
   window.onkeydown = e => {
-    const currentVideo = getCurrentVideo();
+    const { currentVideo } = sharedData;
     if (!currentVideo) return;
     if (matchKey('ArrowLeft', 'a')(e.key)) {
       if (!e.altKey) {
@@ -59,7 +59,7 @@ module.exports = ({ store, getCurrentVideo }) => {
         e.preventDefault();
       }
     } else if (matchKey(' ')(e.key)) {
-      if (e.ctrlKey) {
+      if (e.ctrlKey || store.settings.zoom === 1) {
         if (currentVideo.paused) {
           currentVideo.play();
           if (e.shiftKey) {
@@ -77,12 +77,33 @@ module.exports = ({ store, getCurrentVideo }) => {
         }
         e.preventDefault();
       }
+    } else if (matchKey('Tab')(e.key)) {
+      if (store.settings.zoom === 1) {
+        let nextVideo;
+        if (e.shiftKey) {
+          nextVideo = currentVideo.previousElementSibling;
+        } else {
+          nextVideo = currentVideo.nextElementSibling;
+        }
+        if (nextVideo) {
+          currentVideo.pause();
+          currentVideo.pause();
+          // state.currentVideo = currentVideo.nextElementSibling;
+          nextVideo.play();
+          nextVideo.muted = false;
+          nextVideo.scrollIntoView();
+          sharedData.currentVideo = nextVideo;
+        }
+        e.preventDefault();
+      }
+    } else {
+      // console.log(`e.key:`, e.key);
     }
-    // console.log(`e.key:`, e.key);
   }
 
   window.onkeypress = e => {
-    const currentVideo = getCurrentVideo();
+    const { currentVideo } = sharedData;
+    // const currentVideo = getCurrentVideo();
     const scrollIntoView = () => setTimeout(() => {
       if (!currentVideo) return;
       currentVideo.scrollIntoView(true);

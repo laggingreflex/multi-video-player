@@ -3,7 +3,8 @@ const wheel = require('./wheel');
 const keyboard = require('./keyboard');
 
 module.exports = ({ store, state }) => {
-  const { getMouse, getCurrentVideo } = mouse({ store });
-  wheel({ getCurrentVideo });
-  keyboard({ store, getCurrentVideo });
+  const sharedData = {};
+  mouse({ store, state, sharedData });
+  wheel({ store, state, sharedData });
+  keyboard({ store, state, sharedData });
 };
