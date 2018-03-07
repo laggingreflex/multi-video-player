@@ -1,6 +1,8 @@
 
 * View
 
+  ☐ Best fit zoom level (ideal zoom level to fit all videos on screen)
+
   ☐ Display info/controls on video.
 
   ☐ 'play-visible' - A new mode to play only videos currently in the view
@@ -15,6 +17,8 @@
 
 * Controls
 
+  ☐ WASD equivalent zoom keys
+
   ☐ Option to play next after a video finishes. Currently it just loops
 
   ☐ Global hotkeys - play/pause/next.
@@ -28,6 +32,8 @@
   🗹 stop/play from beginning. <kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>Left</kbd>/<kbd>Right</kbd>
 
   🗹 "Next" to switch to next video. <kbd>Tab</kbd> when zoom=1
+
+  🗹 "Next/prev" to loop to beginning/end if on last/first video
 
 * Files
 

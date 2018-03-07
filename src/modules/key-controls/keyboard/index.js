@@ -82,11 +82,16 @@ module.exports = ({ store, state, sharedData }) => {
         let nextVideo;
         if (e.shiftKey) {
           nextVideo = currentVideo.previousElementSibling;
+          if (!nextVideo) {
+            nextVideo = currentVideo.parentElement.lastElementChild;
+          }
         } else {
           nextVideo = currentVideo.nextElementSibling;
+          if (!nextVideo) {
+            nextVideo = currentVideo.parentElement.firstChild;
+          }
         }
         if (nextVideo) {
-          currentVideo.pause();
           currentVideo.pause();
           // state.currentVideo = currentVideo.nextElementSibling;
           nextVideo.play();
