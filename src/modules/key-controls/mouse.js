@@ -17,6 +17,7 @@ module.exports = ({ store, state, sharedData }) => {
     }
     if (!video) return;
     currentVideo = sharedData.currentVideo = video;
+    // if (store.settings.zoom === 1)
     currentVideo.muted = false;
     currentVideo.controls = true;
     currentVideo.classList.add('current');

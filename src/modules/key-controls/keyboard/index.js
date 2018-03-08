@@ -78,7 +78,7 @@ module.exports = ({ store, state, sharedData }) => {
         e.preventDefault();
       }
     } else if (matchKey('Tab')(e.key)) {
-      if (store.settings.zoom === 1) {
+      if (store.settings.zoom === 1 || true) {
         let nextVideo;
         if (e.shiftKey) {
           nextVideo = currentVideo.previousElementSibling;
@@ -96,11 +96,14 @@ module.exports = ({ store, state, sharedData }) => {
           // state.currentVideo = currentVideo.nextElementSibling;
           nextVideo.play();
           nextVideo.muted = false;
-          nextVideo.scrollIntoView();
+          // nextVideo.scrollIntoView(store.settings.zoom === 1);
+          nextVideo.scrollIntoView({});
           sharedData.currentVideo = nextVideo;
         }
         e.preventDefault();
       }
+    } else if (matchKey('Delete')(e.key)) {
+      console.log(`e.key:`, e.key);
     } else {
       // console.log(`e.key:`, e.key);
     }
@@ -138,9 +141,15 @@ module.exports = ({ store, state, sharedData }) => {
       e.preventDefault();
       scrollIntoView();
     } else if (matchKey('*')(e.key)) {
-      store.settings.styleToggle();
-      // store.settings.style = oneOf(styles)(store.settings.style);
-      console.log(`store.settings.style:`, store.settings.style);
+
+    } else if (matchKey('`')(e.key)) {
+      if (store.settings.zoom === 1) {
+        store.settings.zoom = store.settings.lastZoom || 4;
+      } else {
+        store.settings.lastZoom = store.settings.zoom;
+        store.settings.zoom = 1
+      }
+      console.log('store.settings.zoom', store.settings.zoom);
       e.preventDefault();
       scrollIntoView();
     } else if (matchKey('p')(e.key)) {
