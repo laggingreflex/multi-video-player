@@ -7,7 +7,29 @@ const { toggleList } = require('./utils');
 const listeners = [];
 
 const methods = {
-  state: {},
+  state: {
+    addFile(file) {
+      for (const [, existing] of Object.entries(this.files || {})) {
+        if (existing.name === file.name) {
+          console.warn('Skipping', file.name);
+          return;
+          // throw new Error(`Already added: '${file.name}'`);
+        }
+      }
+      console.log(`Loading`, file.name);
+      const url = URL.createObjectURL(file);
+      // this.files.set(file, { url });
+      if (!this.files) this.files = {};
+      this.files[url] = file;
+    },
+    removeFile(url) {
+      URL.revokeObjectURL(url);
+      const file = this.files[url];
+      console.log(`Removing`, file.name);
+      delete this.files[url];
+      // this.files.delete(file);
+    },
+  },
   store: {
     settings: {
       playModeToggle: (toggle => function() { this.playMode = toggle(this.playMode) })(toggleList([
@@ -26,7 +48,9 @@ const methods = {
 };
 
 const initial = {
-  state: {},
+  state: {
+    files: {},
+  },
   store: {
     settings: {
       playMode: 'play-all-muted',

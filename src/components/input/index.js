@@ -15,8 +15,9 @@ window.ondragover = e => {
 }
 
 window.ondragend =
-window.ondragleave =
+  window.ondragleave =
   e => {
+    // console.log('ondragend');
     clearTimeout(dragLeaveTimeout);
     dragLeaveTimeout = setTimeout(() => {
       if (state.filesBeingDropped)
@@ -36,7 +37,7 @@ module.exports = class {
       multiple: true,
       // onchange: e => state.files = [...(state.files || []), ...(e.target.files || [])],
       onchange: e => {
-        // console.log(e.target.files);
+        console.log(e.target.files);
         state.filesBeingDropped = false;
         state.files = Array.from(e.target.files);
       },
@@ -56,9 +57,14 @@ module.exports = class {
       },
       class: [state.filesBeingDropped && 'filesBeingDropped'].filter(Boolean),
       ondrop: e => {
+        const files = Array.from(e.dataTransfer.files);
+        console.log(`Dropped ${e.dataTransfer.files.length} files:`, files.map(f => f.name.substr(0, 10)).join(', '));
         e.preventDefault();
         state.filesBeingDropped = false;
-        state.files = Array.from(e.dataTransfer.files);
+        for(const file of files) {
+          state.addFile(file);
+        }
+        // state.files = files.concat(state.files || []);
       },
       onclick: e => this.input.click(),
     }, [

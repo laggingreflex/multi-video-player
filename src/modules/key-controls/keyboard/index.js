@@ -149,7 +149,7 @@ module.exports = ({ store, state, sharedData }) => {
         store.settings.lastZoom = store.settings.zoom;
         store.settings.zoom = 1
       }
-      console.log('store.settings.zoom', store.settings.zoom);
+      // console.log('store.settings.zoom', store.settings.zoom);
       e.preventDefault();
       scrollIntoView();
     } else if (matchKey('p')(e.key)) {

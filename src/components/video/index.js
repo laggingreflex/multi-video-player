@@ -3,15 +3,21 @@ const _ = require('../../utils')
 
 module.exports = class {
   componentWillMount() {
-    this.url = URL.createObjectURL(this.props.file);
+    // const { store, state, file, url } = this.props;
+    // console.log(`Loading`, file.name.substr(0, 10));
+    // if (!state.files)
+    //   this.url = URL.createObjectURL(this.props.file);
     // this.props.file.url = URL.createObjectURL(this.props.file);
   }
   componentWillUnmount() {
-    URL.revokeObjectURL(this.url);
+    const { store, state, file, url } = this.props;
+    this.state.removeFile(url);
+    // URL.revokeObjectURL(this.url);
     // URL.revokeObjectURL(this.props.file.url);
     // delete this.props.file.url;
   }
-  render({ store, state, file }) {
+  render() {
+    const { store, state, file, url } = this.props;
     // return h.div.wrapper('video')
     // if (!this.props.file.url) return
     const video = h.video({
@@ -19,7 +25,7 @@ module.exports = class {
       muted: true,
       controls: false,
       // src: this.url,
-      src: this.url,
+      src: url,
       autoplay: store.settings.playMode !== 'play-single',
       loop: true,
     });
