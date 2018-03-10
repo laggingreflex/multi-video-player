@@ -11,7 +11,7 @@ module.exports = class {
   }
   componentWillUnmount() {
     const { store, state, file, url } = this.props;
-    this.state.removeFile(url);
+    // state.removeFile(url);
     // URL.revokeObjectURL(this.url);
     // URL.revokeObjectURL(this.props.file.url);
     // delete this.props.file.url;

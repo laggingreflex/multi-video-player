@@ -8,7 +8,7 @@ module.exports = class {
     const videos = Object.entries(state.files).reverse().map(([url, file], i) => h(require('../video'), Object.assign({}, this.props, {
       file,
       url,
-      // key: url,
+      key: url,
       i,
     })));
     return h.div.videos({

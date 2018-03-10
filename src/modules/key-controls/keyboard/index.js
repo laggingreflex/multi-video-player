@@ -103,7 +103,9 @@ module.exports = ({ store, state, sharedData }) => {
         e.preventDefault();
       }
     } else if (matchKey('Delete')(e.key)) {
-      console.log(`e.key:`, e.key);
+      // console.log('Delete', currentVideo.src);
+      // console.log(`e.key:`, e.key);
+      state.removeFile(currentVideo.src);
     } else {
       // console.log(`e.key:`, e.key);
     }
@@ -155,7 +157,7 @@ module.exports = ({ store, state, sharedData }) => {
     } else if (matchKey('p')(e.key)) {
       store.settings.playModeToggle();
       // store.settings.playMode = oneOf(playModes)(store.settings.playMode);
-      console.log(`store.settings.playMode:`, store.settings.playMode);
+      // console.log(`store.settings.playMode:`, store.settings.playMode);
       if (store.settings.playMode === 'play-single') {
         for (const video of document.querySelectorAll('video')) {
           try {

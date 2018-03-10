@@ -25,9 +25,11 @@ const methods = {
     removeFile(url) {
       URL.revokeObjectURL(url);
       const file = this.files[url];
-      console.log(`Removing`, file.name);
-      delete this.files[url];
-      // this.files.delete(file);
+      if (file) {
+        console.log(`Removing`, file.name);
+        delete this.files[url];
+        // this.files.delete(file);
+      }
     },
   },
   store: {
