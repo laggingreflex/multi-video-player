@@ -103,9 +103,17 @@ module.exports = ({ store, state, sharedData }) => {
         e.preventDefault();
       }
     } else if (matchKey('Delete')(e.key)) {
-      // console.log('Delete', currentVideo.src);
-      // console.log(`e.key:`, e.key);
       state.removeFile(currentVideo.src);
+    } else if (matchKey('1')(e.key)) {
+      console.log(`e.key:`, e.key);
+      state.files = [Array.from(state.files).find(({ url }) => url === currentVideo.src)].concat(
+        Array.from(state.files).filter(({ url }) => url !== currentVideo.src)
+      );
+      // state.files = Array.from(state.files).sort((a, b) => {
+      //   if (a.url !== currentVideo.src) return 1
+      //   if (b.url !== currentVideo.src) return 1
+      //   return -1;
+      // });
     } else {
       // console.log(`e.key:`, e.key);
     }

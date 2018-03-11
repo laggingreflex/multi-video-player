@@ -9,7 +9,8 @@ const listeners = [];
 const methods = {
   state: {
     addFile(file) {
-      for (const [, existing] of Object.entries(this.files || {})) {
+      if (!Array.isArray(this.files)) this.files = [];
+      for (const { file: existing } of this.files) {
         if (existing.name === file.name) {
           console.warn('Skipping', file.name);
           return;
@@ -18,18 +19,17 @@ const methods = {
       }
       console.log(`Loading`, file.name);
       const url = URL.createObjectURL(file);
-      // this.files.set(file, { url });
-      if (!this.files) this.files = {};
-      this.files[url] = file;
+      this.files = [{url, file}].concat(this.files)
+      // this.files.unshift({ url, file });
     },
     removeFile(url) {
-      URL.revokeObjectURL(url);
-      const file = this.files[url];
-      if (file) {
-        console.log(`Removing`, file.name);
-        delete this.files[url];
-        // this.files.delete(file);
-      }
+      this.files = this.files.filter(_ => {
+        if (url === _.url) {
+          console.log('Removing', _.file.name);
+          URL.revokeObjectURL(url);
+          return false;
+        } else return true;
+      });
     },
   },
   store: {
@@ -51,7 +51,7 @@ const methods = {
 
 const initial = {
   state: {
-    files: {},
+    files: [],
   },
   store: {
     settings: {

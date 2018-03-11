@@ -5,7 +5,7 @@ module.exports = class {
   render({ state, store }) {
     if (!state.files) return;
 
-    const videos = Object.entries(state.files).reverse().map(([url, file], i) => h(require('../video'), Object.assign({}, this.props, {
+    const videos = state.files.map(({ url, file }, i) => h(require('../video'), Object.assign({}, this.props, {
       file,
       url,
       key: url,
