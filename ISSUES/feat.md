@@ -17,8 +17,6 @@
 
 * Controls
 
-  ☐ WASD equivalent zoom keys
-
   ☐ Option to play next after a video finishes. Currently it just loops
 
   ☐ Global hotkeys - play/pause/next.
@@ -26,6 +24,8 @@
     * 🗵 Turns out it's not possible, at least not in browser. Neither media keys (play/pause), nor global hotkeys.
 
     * ☐ It might be possible in Electron: https://github.com/electron/electron/blob/master/docs/api/global-shortcut.md
+
+  🗹 WASD equivalent zoom keys - ` key to toggle zoom
 
   🗹 spacebar play/pause when zoom = 1
 
@@ -37,13 +37,13 @@
 
 * Files
 
-  ☐ Ability to add more files, load new files at the top
-
-  ☐ Ability to remove files
+  ☐ Ability to star/favourite files to be moved to the top. It should remember those files and always place them before unrated files. Any new file being starred should then have a "priority" one higher than the highest.
 
   ☐ Ability to re-arrange files
 
-  ☐ Ability to star/favourite files to be moved to the top. It should remember those files and always place them before unrated files. Any new file being starred should then have a "priority" one higher than the highest.
+  🗹 Ability to add more files, load new files at the top
+
+  🗹 Ability to remove files
 
 * Core
 
