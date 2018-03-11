@@ -21,13 +21,19 @@ module.exports = class {
     // return h.div.wrapper('video')
     // if (!this.props.file.url) return
     const video = h.video({
-      // title: file.name,
+      title: file.name,
       muted: true,
       controls: false,
       // src: this.url,
       src: url,
+      key: url,
       autoplay: store.settings.playMode !== 'play-single',
       loop: true,
+      onerror: e => {
+        // console.error(`Cannot play '${file.name}' ${e.target.error.constructor.name}: ${e.target.error.message}`);
+        console.error(e.target.error, file.name);
+        state.removeFile(url);
+      },
     });
     return video;
     return h.div([

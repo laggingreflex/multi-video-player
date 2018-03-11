@@ -104,16 +104,19 @@ module.exports = ({ store, state, sharedData }) => {
       }
     } else if (matchKey('Delete')(e.key)) {
       state.removeFile(currentVideo.src);
+      e.preventDefault();
     } else if (matchKey('1')(e.key)) {
-      console.log(`e.key:`, e.key);
-      state.files = [Array.from(state.files).find(({ url }) => url === currentVideo.src)].concat(
-        Array.from(state.files).filter(({ url }) => url !== currentVideo.src)
-      );
-      // state.files = Array.from(state.files).sort((a, b) => {
-      //   if (a.url !== currentVideo.src) return 1
-      //   if (b.url !== currentVideo.src) return 1
-      //   return -1;
-      // });
+      state.reorderFile(currentVideo.src, 0);
+      // const currVideoInArray = state.files.find(({ url }) => url === currentVideo.src);
+      // const otherVidsInArray = state.files.filter(({ url }) => url !== currentVideo.src);
+      // state.files = [currVideoInArray, ...otherVidsInArray];
+      e.preventDefault();
+    } else if (matchKey('2')(e.key)) {
+      state.reorderFile(currentVideo.src, Infinity);
+      // const currVideoInArray = state.files.find(({ url }) => url === currentVideo.src);
+      // const otherVidsInArray = state.files.filter(({ url }) => url !== currentVideo.src);
+      // state.files = [...otherVidsInArray, currVideoInArray];
+      e.preventDefault();
     } else {
       // console.log(`e.key:`, e.key);
     }

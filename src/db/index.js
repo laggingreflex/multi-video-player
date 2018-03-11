@@ -31,6 +31,15 @@ const methods = {
         } else return true;
       });
     },
+    reorderFile(src, order) {
+      const current = this.files.find(({ url }) => url === src);
+      const others = this.files.filter(({ url }) => url !== src);
+      if (!order || order === 0) {
+        this.files = [current, ...others];
+      } else {
+        this.files = [...others, current];
+      }
+    },
   },
   store: {
     settings: {
