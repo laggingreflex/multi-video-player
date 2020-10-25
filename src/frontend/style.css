@@ -1,0 +1,92 @@
+body {
+  margin: 0;
+}
+
+.app {
+  /* background: yellow; */
+  /* border: 1px dotted; */
+}
+
+.file-drop {
+  /* background: blue; */
+  border: 1px dotted;
+  text-align: center;
+}
+
+.app>.controls {
+  /* border: 1px dotted; */
+  position: fixed;
+  bottom: 0;
+  /* left: 50%; */
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  /* justify-content: space-around; */
+}
+
+.app>.controls>* {
+  margin: 1em .5em;  
+}
+
+.app>.controls > .last { order: -2 }
+.app>.controls > .reverse { order: -1 }
+
+.app>aside {
+  position: fixed;
+  right: 1em;
+  top: 1em;
+  /* padding: 1em; */
+  /* height: 100%; */
+  /* background: rgba(255,255,255,.9); */
+  /* backdrop-filter: blur(1em); */
+}
+.app>aside.expanded {
+  height: 100%;
+  background: rgba(255,255,255,.9);
+  backdrop-filter: blur(1em);
+  padding: 1em;
+  border-left: 1px solid;
+  right: 0;
+  top: 0;
+}
+
+.video {
+  position: relative;
+  /* border: 1px dotted; */
+  display: inline-block;
+}
+
+.meta {
+  position: absolute;
+  display: flex;
+}
+
+.videos {
+  display: flex;
+  flex-wrap: wrap;
+  /* grid-template-columns: 33% 33% 33%; */
+  /* flex-direction: column; */
+}
+
+.video {
+  /* width: 33.33vw; */
+  /* width: 33vw; */
+  /* width: calc(33vw - .2em); */
+  /* width: 33%; */
+  width: 32.7vw;
+}
+
+video {
+  width: 100%;
+}
+
+.full-screen.videos {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.full-screen .video {
+  width: 100%;
+}
