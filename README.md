@@ -3,7 +3,7 @@
 
 Play multiple videos in a single player
 
-https://multi-video-player.surge.sh/
+https://multi-video-player.surge.sh, https://laggingreflex.github.io/multi-video-player
 
 [![screenshot](https://i.imgur.com/AFioixGm.jpg)](https://gfycat.com/SpiritedUglyIrrawaddydolphin)
 
