@@ -154,7 +154,8 @@ module.exports = ({ store, state, sharedData }) => {
       e.preventDefault();
       scrollIntoView();
     } else if (matchKey('*')(e.key)) {
-
+      store.settings.style = store.settings.style === 'mason' ? 'funnel' : store.settings.style === 'funnel' ? 'grid' : 'mason';
+      e.preventDefault();
     } else if (matchKey('`')(e.key)) {
       if (store.settings.zoom === 1) {
         store.settings.zoom = store.settings.lastZoom || 4;
